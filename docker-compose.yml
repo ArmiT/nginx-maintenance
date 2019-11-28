@@ -1,0 +1,23 @@
+{
+    "version": "3",
+    "services": {
+        "nginx": {
+            "image": "nginx:alpine",
+            "container_name": "webserver",
+            "volumes": [
+                "./bin:/usrbin/:ro",
+                "./static:/static:ro",
+                "./config:/etc/nginx/config:rw",
+                "./nginx.conf:/etc/nginx/nginx.conf:ro"
+            ],
+            "ports": [
+                "54222:80"
+            ],
+            "working_dir": "/usrbin",
+            "command": [
+                "./start.sh"
+            ],
+            "restart": "unless-stopped"
+        }
+    }
+}
